@@ -73,6 +73,7 @@ public class HapiProperties {
   static final String BULK_EXPORT_ENABLED = "bulk.export.enabled";
   static final String EXPIRE_SEARCH_RESULTS_AFTER_MINS = "retain_cached_searches_mins";
   static final String MAX_BINARY_SIZE = "max_binary_size";
+  static final String PUSH_URL = "push.url";
   private static Properties ourProperties;
 
   public static boolean isElasticSearchEnabled() {
@@ -488,6 +489,10 @@ public class HapiProperties {
 
   public static boolean isFhirPathFilterInterceptorEnabled() {
     return HapiProperties.getBooleanProperty("fhirpath_interceptor.enabled", false);
+  }
+
+  public static String getPushUrl() {
+    return HapiProperties.getProperty(PUSH_URL);
   }
 }
 

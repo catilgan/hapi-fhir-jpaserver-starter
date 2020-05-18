@@ -44,6 +44,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.cors.CorsConfiguration;
 
+import ca.uhn.fhir.jpa.starter.PushInterceptor;
+
 import javax.servlet.ServletException;
 import java.util.Arrays;
 import java.util.Collections;
@@ -318,6 +320,12 @@ public class JpaRestfulServer extends RestfulServer {
       registerProvider(appCtx.getBean(BulkDataExportProvider.class));
     }
 
-  }
+    /*
+     * Add interceptor for push notifications
+     */
+    PushInterceptor pushInterceptor = new PushInterceptor(daoRegistry, HapiProperties.getPushUrl());
+    registerInterceptor(pushInterceptor);
+
+    }
 
 }
